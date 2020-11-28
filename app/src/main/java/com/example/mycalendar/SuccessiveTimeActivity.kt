@@ -53,7 +53,7 @@ class SuccessiveTimeActivity : AppCompatActivity() {
         vCalendar.setConfig(
             CalendarVerticalConfig.Builder()
                 .setShowWeek(true)                   //是否显示星期栏
-                .setShowLunar(false)                 //是否显示阴历
+                .setShowLunar(true)                 //是否显示阴历
                 .setColorWeek("#333333")             //星期栏的颜色
                 .setTitleFormat("yyyy.MM")           //每个月的标题样式
                 .setColorTitle("#000000")            //每个月标题的颜色
@@ -63,7 +63,7 @@ class SuccessiveTimeActivity : AppCompatActivity() {
                 .setColorRangeBg("#FF5A00")          //区间中间的背景颜色 99FF5A00
                 .setColorRangeText("#FFFFFF")        //区间文字的颜色
                 .setColorStartAndEndBg("#FF5A00")    //开始结束的背景颜色
-                .setCountMonth(3)                    //显示多少月(默认6个月)
+                .setCountMonth(12)                    //显示多少月(默认6个月)
                 .setStartDate(stringToInt(mStartDate))    // 默认开始日期
                 .setEndDate(stringToInt(mEndDate))        // 默认结束日期
                 .build()
