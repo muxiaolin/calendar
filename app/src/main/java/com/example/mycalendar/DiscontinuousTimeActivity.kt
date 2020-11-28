@@ -38,6 +38,7 @@ class DiscontinuousTimeActivity : AppCompatActivity() {
         // 自定义设置相关
         vCalendar.setConfig(
             CalendarVerticalConfig.Builder()
+                .setSelectBefore(true)
                 .setShowWeek(true)                   //是否显示星期栏
                 .setShowLunar(false)                  //是否显示阴历
                 .setColorWeek("#333333")             //星期栏的颜色
@@ -51,6 +52,8 @@ class DiscontinuousTimeActivity : AppCompatActivity() {
                 .setColorStartAndEndBg("#FF5A00")    //开始结束的背景颜色
                 .setCountMonth(3)                    //显示多少月(默认6个月)
                 .setSelectedDateList(banDateList)// 默认选中日期
+                .setMinDate(20000101)    // 默认开始日期
+                .setMaxDate(20210101)        // 默认结束日期
                 .build()
         )
         // 设置日历是否可点击,默认true

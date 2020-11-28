@@ -2,8 +2,10 @@ package com.sange.calendar
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sange.calendar.adapter.BaseCalendarAdapter
 import com.sange.calendar.adapter.CalendarAdapter
@@ -61,13 +63,14 @@ class SCalendarVertical : LinearLayoutCompat {
     private fun initCalendarDates() {
         //星期栏的显示和隐藏
         gWeek.visibility = if (mConfig.isShowWeek) {
-            tv_week_01.setTextColor(mConfig.colorWeek)
-            tv_week_02.setTextColor(mConfig.colorWeek)
-            tv_week_03.setTextColor(mConfig.colorWeek)
-            tv_week_04.setTextColor(mConfig.colorWeek)
-            tv_week_05.setTextColor(mConfig.colorWeek)
-            tv_week_06.setTextColor(mConfig.colorWeek)
-            tv_week_07.setTextColor(mConfig.colorWeek)
+            val color = mConfig.colorWeek
+            tv_week_01.setTextColor(color)
+            tv_week_02.setTextColor(color)
+            tv_week_03.setTextColor(color)
+            tv_week_04.setTextColor(color)
+            tv_week_05.setTextColor(color)
+            tv_week_06.setTextColor(color)
+            tv_week_07.setTextColor(color)
             View.VISIBLE
         } else {
             View.GONE
@@ -75,15 +78,32 @@ class SCalendarVertical : LinearLayoutCompat {
 
         // 日期集合
         mAdapter.dataList.clear()
-        val calendar = Calendar.getInstance()
         val monthTitleFormat = SimpleDateFormat(mConfig.titleFormat, Locale.CHINA)
         // 记录几个7号
         var count7: Int
         // 记录第几个月
         var month: Int
         val dates = arrayListOf<CalendarDay>()
+        // 显示多少个月
+        val calendar: Calendar
+        val countMonth: Int
+        if (mConfig.minDate > 0 && mConfig.maxDate > 0 && mConfig.maxDate > mConfig.minDate) {
+            val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.CHINA)
+            val  minCalendar = Calendar.getInstance()
+            minCalendar.time = dateFormat.parse(mConfig.minDate.toString())
+            val maxCalendar = Calendar.getInstance()
+            maxCalendar.time = dateFormat.parse(mConfig.maxDate.toString())
+//            Log.d("Calendar","minCalendar:" +minCalendar.time)
+//            Log.d("Calendar","maxCalendar:" +maxCalendar.time)
+
+            calendar = minCalendar
+            countMonth = CalendarUtils.betweenMonthByTwoCalendar(minCalendar, maxCalendar)
+        }else {
+            calendar = Calendar.getInstance()
+            countMonth = mConfig.countMonth
+        }
         // 计算日期
-        for (i in 0 until mConfig.countMonth) {// 显示多少个月
+        for (i in 0 until countMonth) {// 显示多少个月
             month = calendar.get(Calendar.MONTH)
             // 添加月标题
             mAdapter.dataList.add(CalendarMonth(monthTitleFormat.format(calendar.time), mAdapter.typeMonthHead))

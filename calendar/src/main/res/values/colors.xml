@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--日期控件的背景色-->
+    <color name="calendar_layout_bg">#FFFFFF</color>
+    <!--星期栏的背景色-->
+    <color name="calendar_week_bg">#F5F5F5</color>
     <!--星期的颜色值-->
-    <color name="calendar_text_week">#5E5E5E</color>
+    <color name="calendar_text_week">#80000000</color>
+    <!--年月标题的颜色值-->
+    <color name="calendar_text_month">#80000000</color>
     <!--日历Item的阳历的颜色值-->
     <color name="calendar_text_solar">#282828</color>
     <!--线-->
-    <color name="calendar_line">#CCCCCC</color>
+    <color name="calendar_line">#0F000000</color>
+
 </resources>

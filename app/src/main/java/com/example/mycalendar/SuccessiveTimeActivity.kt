@@ -52,20 +52,23 @@ class SuccessiveTimeActivity : AppCompatActivity() {
         // 自定义设置相关
         vCalendar.setConfig(
             CalendarVerticalConfig.Builder()
+                .setSelectBefore(true)
                 .setShowWeek(true)                   //是否显示星期栏
                 .setShowLunar(true)                 //是否显示阴历
-                .setColorWeek("#333333")             //星期栏的颜色
-                .setTitleFormat("yyyy.MM")           //每个月的标题样式
-                .setColorTitle("#000000")            //每个月标题的颜色
-                .setColorSolar("#333333")            //阳历的颜色
-                .setColorLunar("#00ff00")            //阴历的颜色
-                .setColorBeforeToday("#CCCCCC")      //今天之前的日期的颜色
-                .setColorRangeBg("#FF5A00")          //区间中间的背景颜色 99FF5A00
-                .setColorRangeText("#FFFFFF")        //区间文字的颜色
-                .setColorStartAndEndBg("#FF5A00")    //开始结束的背景颜色
-                .setCountMonth(12)                    //显示多少月(默认6个月)
+//                .setColorWeek("#333333")             //星期栏的颜色
+//                .setTitleFormat("yyyy.MM")           //每个月的标题样式
+//                .setColorTitle("#000000")            //每个月标题的颜色
+//                .setColorSolar("#333333")            //阳历的颜色
+//                .setColorLunar("#00ff00")            //阴历的颜色
+                .setColorBeforeToday("#e6000000")      //今天之前的日期的颜色
+//                .setColorRangeBg("#EDF6F5")          //区间中间的背景颜色 99FF5A00
+//                .setColorRangeText("#e6000000")        //区间文字的颜色
+//                .setColorStartAndEndBg("#74C5A8")    //开始结束的背景颜色
+                .setCountMonth(10)                    //显示多少月(默认6个月)
                 .setStartDate(stringToInt(mStartDate))    // 默认开始日期
                 .setEndDate(stringToInt(mEndDate))        // 默认结束日期
+//                .setMinDate(20000101)    // 默认开始日期
+//                .setMaxDate(20210101)        // 默认结束日期
                 .build()
         )
         // 事件日期集合

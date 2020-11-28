@@ -8,4 +8,7 @@
     <string name="calendar_week_saturday">六</string>
     <string name="calendar_not_before_today">选择的日期必须大于今天</string>
     <string name="calendar_null">--</string>
+    <string name="calendar_today_text">今</string>
+    <string name="calendar_select_start">开始</string>
+    <string name="calendar_select_end">结束</string>
 </resources>

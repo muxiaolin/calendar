@@ -64,9 +64,9 @@ class CalendarAdapter(context: Context) : BaseCalendarAdapter(context) {
                 iv_day_bg.visibility = View.VISIBLE
                 iv_day_bg.setBackgroundResource(R.drawable.calendar_bg_selected_start)
                 tv_day_small.visibility = View.VISIBLE
-                tv_day_small.text = "开始"
-                tv_day.setTextColor(config.colorRangeText)
-                tv_day_small.setTextColor(config.colorRangeText)
+                tv_day_small.text = context.getText(R.string.calendar_select_start)
+                tv_day.setTextColor(config.colorStartAndEndText)
+                tv_day_small.setTextColor(config.colorStartAndEndText)
                 //动态修改颜色
                 (iv_day_bg.background as GradientDrawable).setColor(config.colorStartAndEndBg)
             }
@@ -75,9 +75,9 @@ class CalendarAdapter(context: Context) : BaseCalendarAdapter(context) {
                 iv_day_bg.visibility = View.VISIBLE
                 iv_day_bg.setBackgroundResource(R.drawable.calendar_bg_selected_end)
                 tv_day_small.visibility = View.VISIBLE
-                tv_day_small.text = "结束"
-                tv_day.setTextColor(config.colorRangeText)
-                tv_day_small.setTextColor(config.colorRangeText)
+                tv_day_small.text = context.getText(R.string.calendar_select_end)
+                tv_day.setTextColor(config.colorStartAndEndText)
+                tv_day_small.setTextColor(config.colorStartAndEndText)
                 //动态修改颜色
                 (iv_day_bg.background as GradientDrawable).setColor(config.colorStartAndEndBg)
             }

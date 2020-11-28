@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="50dp">
+    android:layout_height="@dimen/calendar_day_height">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_day_bg"
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:text="@string/calendar_null"
         android:textColor="@color/calendar_text_solar"
-        android:textSize="16sp"
+        android:textSize="@dimen/calendar_day_solar_text_size"
         app:layout_constraintBottom_toTopOf="@id/tv_day_small"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/calendar_null"
-        android:textSize="10sp"
+        android:textSize="@dimen/calendar_day_lunar_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

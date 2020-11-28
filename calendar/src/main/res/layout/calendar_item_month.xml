@@ -4,21 +4,23 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <View
-        android:id="@+id/v_month_line"
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/calendar_line" />
-
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_month_title"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/calendar_month_height"
         android:layout_gravity="start"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="@dimen/calendar_month_margin_top"
         android:gravity="center"
         android:text="@string/calendar_null"
-        android:textStyle="bold"
-        android:textColor="#262626"
-        android:textSize="14sp" />
+        android:textColor="@color/calendar_text_month"
+        android:textSize="@dimen/calendar_month_text_size"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/v_month_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/calendar_line" />
+
 </androidx.appcompat.widget.LinearLayoutCompat>

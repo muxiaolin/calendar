@@ -59,4 +59,8 @@ class Lunar {
  * 阳历
  * @author ssq
  */
-class Solar(var solarYear: Int, var solarMonth: Int, var solarDay: Int)
+class Solar(var solarYear: Int, var solarMonth: Int, var solarDay: Int){
+    override fun toString(): String {
+        return "Solar(solarYear=$solarYear, solarMonth=$solarMonth, solarDay=$solarDay)"
+    }
+}

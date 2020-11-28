@@ -87,7 +87,7 @@ abstract class BaseCalendarAdapter(val context: Context) : RecyclerView.Adapter<
             itemView.setOnClickListener(View.OnClickListener {
                 val date = (dataList[adapterPosition] as CalendarDay)
                 //必须大于今天
-                if (date.date < nowDate) {
+                if (!config.isSelectBefore && date.date < nowDate) {
                     Toast.makeText(context, R.string.calendar_not_before_today, Toast.LENGTH_SHORT).show()
                     return@OnClickListener
                 }
@@ -122,7 +122,7 @@ abstract class BaseCalendarAdapter(val context: Context) : RecyclerView.Adapter<
                 val itemDate = data.date
                 //判断是不是当天
                 if (nowDate == itemDate) {
-                    tv_day.text = "今天"
+                    tv_day.text = context.getText(R.string.calendar_today_text)
                 } else if (nowDate > itemDate) {// 小于今天的颜色变灰
                     tv_day.setTextColor(config.colorBeforeToday)
                 }
@@ -145,7 +145,10 @@ abstract class BaseCalendarAdapter(val context: Context) : RecyclerView.Adapter<
         fun bindData(data: CalendarMonth, position: Int) {
             with(itemView) {
                 tv_month_title.text = data.title
-                v_month_line.visibility = if (position == 0) View.GONE else View.VISIBLE
+                if(config.colorTitle != 0){
+                    tv_month_title.setTextColor(config.colorTitle)
+                }
+//                v_month_line.visibility = if (position == 0) View.GONE else View.VISIBLE
             }
         }
     }

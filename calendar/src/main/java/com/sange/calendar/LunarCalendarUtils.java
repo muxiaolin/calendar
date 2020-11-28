@@ -1,5 +1,7 @@
 package com.sange.calendar;
 
+import android.util.Log;
+
 import com.sange.calendar.model.Lunar;
 import com.sange.calendar.model.Solar;
 
@@ -222,9 +224,9 @@ public class LunarCalendarUtils {
             if(date.length() != 8){
                 return new Lunar();
             }
-            int year = Integer.parseInt(date.substring(0,3));
-            int month = Integer.parseInt(date.substring(4,5));
-            int day = Integer.parseInt(date.substring(6,7));
+            int year = Integer.parseInt(date.substring(0,4));
+            int month = Integer.parseInt(date.substring(4,6));
+            int day = Integer.parseInt(date.substring(6,8));
             Solar solar = new Solar(year, month, day);
             return solarToLunar(solar);
         } catch (Exception e) {
