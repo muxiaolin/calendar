@@ -3,6 +3,7 @@ package com.example.mycalendar
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.sange.calendar.adapter.CalendarAdapter
 import com.sange.calendar.model.CalendarEventModel
@@ -64,11 +65,14 @@ class SuccessiveTimeActivity : AppCompatActivity() {
 //                .setColorRangeBg("#EDF6F5")          //区间中间的背景颜色 99FF5A00
 //                .setColorRangeText("#e6000000")        //区间文字的颜色
 //                .setColorStartAndEndBg("#74C5A8")    //开始结束的背景颜色
-                .setCountMonth(10)                    //显示多少月(默认6个月)
-                .setStartDate(stringToInt(mStartDate))    // 默认开始日期
-                .setEndDate(stringToInt(mEndDate))        // 默认结束日期
-//                .setMinDate(20000101)    // 默认开始日期
-//                .setMaxDate(20210101)        // 默认结束日期
+//                .setCountMonth(10)                    //显示多少月(默认6个月)
+//                .setStartDate(stringToInt(mStartDate))    // 默认开始日期
+//                .setEndDate(stringToInt(mEndDate))        // 默认结束日期
+                .setStartDate(20160101)    // 默认开始日期
+                .setEndDate(20160115)        // 默认结束日期
+                .setMustSelectEndDate(false)
+                .setMinDate(19900101)    // 默认开始日期
+                .setMaxDate(20210101)        // 默认结束日期
                 .build()
         )
         // 事件日期集合
@@ -86,12 +90,18 @@ class SuccessiveTimeActivity : AppCompatActivity() {
         vCalendar.setEventDates(mEventDates)
         // 设置日历是否可点击,默认true
         vCalendar.setDateClickable(mClickable)
+
+//        vCalendar.scrollToToady()
     }
 
     /**
      * 选中日期
      */
     private fun onChooseDate(startDate: Int, endDate: Int) {
+        Log.d("@@@", String.format("startDate=%s, endDate=%s", startDate, endDate))
+        if (startDate == 0 || endDate == 0) {
+            return
+        }
         mErrorMsg = ""
         for (eventDate in mEventDates) {
             if (eventDate.eventDate in startDate..endDate) {

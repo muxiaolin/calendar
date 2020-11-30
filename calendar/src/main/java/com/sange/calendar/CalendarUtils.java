@@ -82,4 +82,19 @@ public class CalendarUtils {
     public static int getMaxMonthCount(Calendar monthDay) {
         return monthDay.getActualMaximum(Calendar.DAY_OF_MONTH);
     }
+
+    public static boolean isSameToady(Calendar c1, Calendar c2) {
+        int year = c1.get(Calendar.YEAR);
+        int month = c1.get(Calendar.MONTH);
+        int day = c1.get(Calendar.DAY_OF_MONTH);
+
+        int year2 = c2.get(Calendar.YEAR);
+        int month2 = c2.get(Calendar.MONTH);
+        int day2 = c2.get(Calendar.DAY_OF_MONTH);
+
+        if (year == year2 && month == month2 && day == day2) {
+            return true;
+        }
+        return false;
+    }
 }

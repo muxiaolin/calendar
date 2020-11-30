@@ -61,7 +61,7 @@ abstract class BaseCalendarAdapter(val context: Context) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val data = dataList[position]
         if (holder is DayViewHolder && data is CalendarDay) {
-            holder.bindData(data)
+            holder.bindData(data, position)
         } else if (holder is MonthHeadViewHolder && data is CalendarMonth) {
             holder.bindData(data, position)
         }
@@ -97,7 +97,7 @@ abstract class BaseCalendarAdapter(val context: Context) : RecyclerView.Adapter<
             })
         }
 
-        fun bindData(data: CalendarDay) {
+        fun bindData(data: CalendarDay, position: Int) {
             with(itemView) {
                 //不是本月的隐藏
                 if (!data.isCurrentMonth) {

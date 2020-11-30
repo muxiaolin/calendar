@@ -25,10 +25,12 @@ import java.util.*
  * @author ssq
  */
 class SCalendarVertical : LinearLayoutCompat {
+    private val TAG = "SCalendarVertical"
     // 日历配置
     private var mConfig = CalendarVerticalConfig.Builder().build()
     // 日历适配器
     private lateinit var mAdapter: BaseCalendarAdapter
+    private var isTodayPos = -1;
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -89,12 +91,12 @@ class SCalendarVertical : LinearLayoutCompat {
         val countMonth: Int
         if (mConfig.minDate > 0 && mConfig.maxDate > 0 && mConfig.maxDate > mConfig.minDate) {
             val dateFormat = SimpleDateFormat("yyyyMMdd", Locale.CHINA)
-            val  minCalendar = Calendar.getInstance()
+            val minCalendar = Calendar.getInstance()
             minCalendar.time = dateFormat.parse(mConfig.minDate.toString())
             val maxCalendar = Calendar.getInstance()
             maxCalendar.time = dateFormat.parse(mConfig.maxDate.toString())
-//            Log.d("Calendar","minCalendar:" +minCalendar.time)
-//            Log.d("Calendar","maxCalendar:" +maxCalendar.time)
+//            Log.d(TAG,"minCalendar:" +minCalendar.time)
+//            Log.d(TAG,"maxCalendar:" +maxCalendar.time)
 
             calendar = minCalendar
             countMonth = CalendarUtils.betweenMonthByTwoCalendar(minCalendar, maxCalendar)
@@ -102,7 +104,10 @@ class SCalendarVertical : LinearLayoutCompat {
             calendar = Calendar.getInstance()
             countMonth = mConfig.countMonth
         }
+//        Log.d(TAG,"countMonth:" + countMonth)
         // 计算日期
+        val now = Calendar.getInstance()
+        isTodayPos = -1
         for (i in 0 until countMonth) {// 显示多少个月
             month = calendar.get(Calendar.MONTH)
             // 添加月标题
@@ -119,6 +124,9 @@ class SCalendarVertical : LinearLayoutCompat {
             while (dates.size < 6 * 7) {
                 val date = mAdapter.yyyyMMdd.format(calendar.time)
                 dates.add(CalendarDay(date.toInt(), LunarCalendarUtils.solarToLunar(date), calendar.get(Calendar.MONTH) == month, mAdapter.typeDay))
+                if (CalendarUtils.isSameToady(calendar, now)) {
+                    isTodayPos = mAdapter.dataList.size - 1
+                }
                 //包含两个7就多了一行
                 if (calendar.get(Calendar.DAY_OF_MONTH) == 7) {
                     count7++
@@ -132,12 +140,22 @@ class SCalendarVertical : LinearLayoutCompat {
                 mAdapter.dataList.addAll(dates)
             }
         }
+//        Log.d(TAG,"dataList isTodayPos:" + isTodayPos)
+//        Log.d(TAG,"dataList size:" + mAdapter.dataList.size)
         mAdapter.setConfig(mConfig)
         if (mAdapter is CalendarMultipleAdapter && mConfig.selectedDateList.isNotEmpty()) {
             (mAdapter as CalendarMultipleAdapter).initSelectedDate()
         }
         mAdapter.notifyDataSetChanged()
     }
+
+
+    fun scrollToToady() {
+        if(isTodayPos >= 0 && isTodayPos < (mAdapter.dataList.size - 1)) {
+            rvCalendar.scrollToPosition(isTodayPos)
+        }
+    }
+
 
     /**
      * 设置事件日期(可选)

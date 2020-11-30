@@ -67,6 +67,9 @@ class CalendarVerticalConfig private constructor() {
     // 选中的结束时间, 日期 yyyyMMdd
     var endDate = 0
         private set
+    //是否必须选择结束时间, 针对区间选择有效。
+    var isMustSelectEndDate = true
+        private set
     // 选中的日期集合（不连续多选）
     val selectedDateList = arrayListOf<Int>()
 
@@ -178,6 +181,11 @@ class CalendarVerticalConfig private constructor() {
          */
         fun setEndDate(endDate: Int): Builder {
             calendarConfig.endDate = endDate
+            return this
+        }
+
+        fun setMustSelectEndDate(isMustSelectEndDate: Boolean): Builder {
+            calendarConfig.isMustSelectEndDate = isMustSelectEndDate
             return this
         }
 

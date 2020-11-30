@@ -51,9 +51,15 @@ class CalendarAdapter(context: Context) : BaseCalendarAdapter(context) {
                 endDatePosition = position
             }
         }
-        if (startDate != 0 && endDate != 0) {
-            //选取通知
-            rangeChooseListener?.onRangeDate(startDate, endDate)
+        //选取通知
+        if (config.isMustSelectEndDate) {
+            if (startDate != 0 && endDate != 0) {
+                rangeChooseListener?.onRangeDate(startDate, endDate)
+            }
+        }else{
+            if (startDate != 0) {
+                rangeChooseListener?.onRangeDate(startDate, endDate)
+            }
         }
     }
 
